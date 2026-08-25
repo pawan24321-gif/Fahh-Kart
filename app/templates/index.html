@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="hero">
+    <h1>Welcome to ElectroMart</h1>
+    <p>Best Electronics at Best Prices</p>
+</section>
+
+<section class="products">
+
+    {% for product in products %}
+
+    <div class="card">
+
+        <img src="{{ url_for('static',
+        filename='images/' + product.image) }}">
+
+        <h2>{{ product.name }}</h2>
+
+        <p>₹{{ product.price }}</p>
+        
+        <a href="/product/{{ product.id }}">
+            <button>View Product</button>
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+</section>
+
+{% endblock %}

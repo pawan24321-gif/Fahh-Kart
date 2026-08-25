@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="cart-page">
+
+    <h1>Your Cart</h1>
+
+    {% if cart_items %}
+
+        {% for item in cart_items %}
+
+        <div class="cart-item">
+            
+            <img src="{{ url_for('static',
+            filename='images/' + item.image) }}">
+            
+            <div>
+                <h2>{{ item.name }}</h2>
+                <p>₹{{ item.price }}</p>
+                
+                <a href="/remove-from-cart/{{ item.id }}">
+                    <button>Remove</button>
+                </a>
+            </div>
+        </div>
+        <h2>
+            Total:
+            ₹{{ cart_items | sum(attribute='price') }}
+        </h2>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p>Your cart is empty.</p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
